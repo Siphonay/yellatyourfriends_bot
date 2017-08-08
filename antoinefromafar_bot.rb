@@ -29,7 +29,7 @@ def get_acapela_tts str
   return acapela_response.body.scan(/http.*?mp3/)
 end
 
-begin
+#begin
   Telegram::Bot::Client.run(ARGV[0]) do |antoine_bot|
     antoine_bot.listen do |message|
       case message
@@ -46,6 +46,6 @@ begin
       end
     end
   end
-rescue => error
-  STDERR.puts "got error: #{error}"
-end
+#rescue => error
+#  STDERR.puts "got error: #{error}"
+#end
