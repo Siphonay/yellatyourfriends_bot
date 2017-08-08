@@ -18,6 +18,7 @@ begin
           acapela_inline_query = " "
         else
           acapela_inline_query = message.query
+        end
         acapela_uri = URI.parse("http://www.acapela-group.com/demo-tts/DemoHTML5Form_V2.php")
         acapela_cookies = HTTP::CookieJar.new
         acapela_cookies.load(ARGV[1], :cookiestxt) if File.exist?(ARGV[1])
