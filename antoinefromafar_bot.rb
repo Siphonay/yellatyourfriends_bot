@@ -40,7 +40,7 @@ begin
         result = Telegram::Bot::Types::InlineQueryResultVoice.new(
           "voice",
           1,
-          get_acapela_tts(message.text),
+          get_acapela_tts(message.query),
           "AntoineFromAfar dit:")
         antoine_bot.api.answer_inline_query(inline_query_id: message.id, results: result)
       end
