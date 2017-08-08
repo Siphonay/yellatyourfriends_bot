@@ -40,7 +40,7 @@ end
         result = [
           ["voice",
            "1",
-           get_acapela_tts(message.query),
+           "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",#get_acapela_tts(message.query),
           "AntoineFromAfar dit:"]
         ].map do |arr|
           Telegram::Bot::Types::InlineQueryResultVoice.new(
