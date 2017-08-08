@@ -7,6 +7,7 @@ require 'http-cookie'
 abort "usage: #{$PROGRAM_NAME} telegram_token cookie_file" unless ARGV.length == 2
 
 def get_acapela_tts str
+  str = "" unless str
   acapela_uri = URI.parse("http://www.acapela-group.com/demo-tts/DemoHTML5Form_V2.php")
   acapela_cookies = HTTP::CookieJar.new
   acapela_cookies.load(ARGV[1], :cookiestxt) if File.exist?(ARGV[1])
@@ -25,7 +26,6 @@ def get_acapela_tts str
   acapela_response = Net::HTTP.start(acapela_uri.hostname, acapela_uri.port) do |http|
     http.request acapela_request
   end
-  puts "DEBUG: #{acapela_response.body.scan(/http.*?mp3/).join}"
   return acapela_response.body.scan(/http.*?mp3/).join
 end
 
