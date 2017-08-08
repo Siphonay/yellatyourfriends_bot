@@ -39,14 +39,14 @@ end
       when Telegram::Bot::Types::InlineQuery
         result = [
           ["voice",
-          "1",
-          "https://upload.wikimedia.org/wikipedia/commons/b/bd/Rondo_Alla_Turka.ogg",
+           "1",
+           get_acapela_tts(message.query),
           "AntoineFromAfar dit:"]
         ].map do |arr|
           Telegram::Bot::Types::InlineQueryResultVoice.new(
-            id: 1,
-            title: arr[3],
-            voice_url: arr[2])
+            id: arr[1],
+            voice_url: arr[2],
+            title: arr[3])
         end
         antoine_bot.api.answer_inline_query(inline_query_id: message.id,
                                             results: result)
