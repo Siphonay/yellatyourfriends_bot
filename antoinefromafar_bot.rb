@@ -44,7 +44,7 @@ end
           "AntoineFromAfar dit:"]
         ].map do |arr|
           Telegram::Bot::Types::InlineQueryResultVoice.new(
-            id: 1)
+            id: 1, title: arr[2])
         end
         antoine_bot.api.answer_inline_query(inline_query_id: message.id, results: result)
       end
