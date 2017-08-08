@@ -38,11 +38,14 @@ end
                              text: "Ce bot s'utilise en mode \"inline\", mentionnez le dans une conversation pour l'utiliser.")
       when Telegram::Bot::Types::InlineQuery
         result = [
-          Telegram::Bot::Types::InlineQueryResultVoice.new("voice",
+          ["voice",
           "1",
           "https://upload.wikimedia.org/wikipedia/commons/b/bd/Rondo_Alla_Turka.ogg",
-          "AntoineFromAfar dit:")
-        ]
+          "AntoineFromAfar dit:"]
+        ].map do |arr|
+          Telegram::Bot::Types::InlineQueryResultVoice.new(
+            voice_url: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Rondo_Alla_Turka.ogg")
+        end
         antoine_bot.api.answer_inline_query(inline_query_id: message.id, results: result)
       end
     end
