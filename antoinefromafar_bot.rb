@@ -44,7 +44,7 @@ end
           "AntoineFromAfar dit:"]
         ].map do |arr|
           Telegram::Bot::Types::InlineQueryResultVoice.new(
-            voice_url: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Rondo_Alla_Turka.ogg")
+            id: 1)
         end
         antoine_bot.api.answer_inline_query(inline_query_id: message.id, results: result)
       end
