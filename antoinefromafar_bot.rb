@@ -25,6 +25,7 @@ def get_acapela_tts str
   acapela_response = Net::HTTP.start(acapela_uri.hostname, acapela_uri.port) do |http|
     http.request acapela_request
   end
+  puts acapela_response.body.scan(/http.*?mp3/).join
   return acapela_response.body.scan(/http.*?mp3/).join
 end
 
