@@ -40,7 +40,7 @@ end
         result = [
           ["voice",
           "1",
-          get_acapela_tts(message.query),
+          "https://upload.wikimedia.org/wikipedia/commons/b/bd/Rondo_Alla_Turka.ogg",
           "AntoineFromAfar dit:"]
         ]
         antoine_bot.api.answer_inline_query(inline_query_id: message.id, results: result)
