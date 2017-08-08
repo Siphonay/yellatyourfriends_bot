@@ -26,7 +26,7 @@ def get_acapela_tts str
     http.request acapela_request
   end
 
-  return acapela_response.body.scan(/http.*?mp3/)
+  return acapela_response.body.scan(/http.*?mp3/).join
 end
 
 #begin
