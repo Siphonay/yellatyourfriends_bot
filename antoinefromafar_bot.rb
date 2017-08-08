@@ -17,6 +17,9 @@ begin
         antoine_bot.api.send_message(chat_id: message.chat.id,
                              text: "Ce bot s'utilise en mode \"inline\", mentionnez le dans une conversation pour l'utiliser.")
       when Telegram::Bot::Types::InlineQuery
+        puts "START DEBUG"
+        acapela_cookies.each { |cookie| puts cookie }
+        puts "END DEBUG"
         if message.query.size == 0
           acapela_inline_query = " "
         else
