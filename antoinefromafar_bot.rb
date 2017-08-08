@@ -34,7 +34,7 @@ begin
     antoine_bot.listen do |message|
       case message
       when Telegram::Bot::Types::Message
-        bot.api.send_message(chat_id: message.chat.id,
+        antoine_bot.api.send_message(chat_id: message.chat.id,
                              text: "Ce bot s'utilise en mode \"inline\", mentionnez le dans une conversation pour l'utiliser.")
       when Telegram::Bot::Types::InlineQuery
         result = Telegram::Bot::Types::InlineQueryResultVoice.new(
