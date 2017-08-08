@@ -37,12 +37,12 @@ end
         antoine_bot.api.send_message(chat_id: message.chat.id,
                              text: "Ce bot s'utilise en mode \"inline\", mentionnez le dans une conversation pour l'utiliser.")
       when Telegram::Bot::Types::InlineQuery
-        result = [ Telegram::Bot::Types::InlineQueryResultVoice.new(
+        result = [
           "voice",
           "1",
           get_acapela_tts(message.query),
-          "AntoineFromAfar dit:")
-                 ]
+          "AntoineFromAfar dit:"
+        ]
         antoine_bot.api.answer_inline_query(inline_query_id: message.id, results: result)
       end
     end
