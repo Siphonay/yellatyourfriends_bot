@@ -25,7 +25,7 @@ def get_acapela_tts str
   acapela_response = Net::HTTP.start(acapela_uri.hostname, acapela_uri.port) do |http|
     http.request acapela_request
   end
-
+  puts "DEBUG: #{acapela_response.body.scan(/http.*?mp3/).join}"
   return acapela_response.body.scan(/http.*?mp3/).join
 end
 
@@ -40,7 +40,7 @@ end
         result = [
           ["voice",
            "1",
-           "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",#get_acapela_tts(message.query),
+           get_acapela_tts(message.query),
           "AntoineFromAfar dit:"]
         ].map do |arr|
           Telegram::Bot::Types::InlineQueryResultVoice.new(
