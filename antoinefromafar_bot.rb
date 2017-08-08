@@ -18,7 +18,7 @@ begin
                              text: "Ce bot s'utilise en mode \"inline\", mentionnez le dans une conversation pour l'utiliser.")
       when Telegram::Bot::Types::InlineQuery
         if message.query.size == 0
-          acapela_inline_query = " "
+          acapela_inline_query = "message vide"
         else
           acapela_inline_query = message.query
         end
