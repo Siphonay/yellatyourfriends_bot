@@ -29,8 +29,14 @@ begin
         antoine_bot.api.send_message(chat_id: message.chat.id,
                                      text: "Ce bot s'utilise en mode \"inline\", mentionnez le dans une conversation pour l'utiliser.")
 
-      # Traiter chaque query inline non-vide reçue
-      when Telegram::Bot::Types::InlineQuery && message.query.size != 0
+      # Traiter chaque query inline reçue
+      when Telegram::Bot::Types::InlineQuery
+        if message.query.size == 0              # Si une query vide est reçue, (directement après la mention du bot, per exemple)
+          acapela_inline_query = "message vide" # mettre un message de remplacement pour empêcher le crash.
+        else                                    # Sinon,
+          acapela_inline_query = message.query  # utiliser la query pour la transformer en message vocal.
+        end
+
         # Initialisation de l'URL de requête ainsi que ses paramètres
         acapela_uri = URI.parse("http://www.acapela-group.com/demo-tts/DemoHTML5Form_V2.php")
         acapela_request = Net::HTTP::Post.new acapela_uri
@@ -38,7 +44,7 @@ begin
           {
             "MyLanguages" => "sonid10",
             "MySelectedVoice" => "AntoineFromAfar",
-            "MyTextForTTS" => message.query,
+            "MyTextForTTS" => acapela_inline_query,
             "t" => "1",
             "SendToVaaS" => "",
           }
