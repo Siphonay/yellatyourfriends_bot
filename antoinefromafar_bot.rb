@@ -7,7 +7,6 @@ require 'http-cookie'
 abort "usage: #{$PROGRAM_NAME} telegram_token cookie_file" unless ARGV.length == 2
 
 def get_acapela_tts str
-  str = "vide" unless str
   acapela_uri = URI.parse("http://www.acapela-group.com/demo-tts/DemoHTML5Form_V2.php")
   acapela_cookies = HTTP::CookieJar.new
   acapela_cookies.load(ARGV[1], :cookiestxt) if File.exist?(ARGV[1])
@@ -29,7 +28,7 @@ def get_acapela_tts str
   return acapela_response.body.scan(/http.*?mp3/).join
 end
 
-#begin
+begin
   Telegram::Bot::Client.run(ARGV[0]) do |antoine_bot|
     antoine_bot.listen do |message|
       case message
@@ -53,6 +52,6 @@ end
       end
     end
   end
-#rescue => error
-#  STDERR.puts "got error: #{error}"
-#end
+rescue => error
+  STDERR.puts "got error: #{error}"
+end
