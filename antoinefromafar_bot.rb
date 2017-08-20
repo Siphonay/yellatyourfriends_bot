@@ -12,10 +12,6 @@ require 'http-cookie'
 # Quitter le script si les arguments nécessaires ne sont pas présents
 abort "usage: #{$PROGRAM_NAME} telegram_token cookie_file" unless ARGV.length == 2
 
-# Initialiser les cookies pour acapela si le fichier de cookies spécifié dans les arguments existe
-acapela_cookies = HTTP::CookieJar.new
-acapela_cookies.load(ARGV[1], :cookiestxt) if File.exist?(ARGV[1])
-
 # Boucle pour empêcher le programme de crasher si l'API de Telegram ne répond pas
 begin
   # Initialisation du bot
@@ -37,6 +33,9 @@ begin
           acapela_inline_query = message.query  # utiliser la query pour la transformer en message vocal.
         end
 
+        # Initialiser les cookies pour acapela si le fichier de cookies spécifié dans les arguments existe (fait a chaque query pour pouvoir update les cookies si le fichier a été mis à jour)
+        acapela_cookies = HTTP::CookieJar.new
+        acapela_cookies.load(ARGV[1], :cookiestxt) if File.exist?(ARGV[1])
         # Initialisation de l'URL de requête ainsi que ses paramètres
         acapela_uri = URI.parse("http://www.acapela-group.com/demo-tts/DemoHTML5Form_V2.php")
         acapela_request = Net::HTTP::Post.new acapela_uri
