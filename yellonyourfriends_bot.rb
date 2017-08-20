@@ -63,7 +63,7 @@ begin
             ["voice",
              "1",
              acapela_voice_url,
-             "AntoineFromAfar dit:"]
+             "your message:"]
           ].map do |arr|
           Telegram::Bot::Types::InlineQueryResultVoice.new(id: arr[1],
                                                            voice_url: arr[2],
