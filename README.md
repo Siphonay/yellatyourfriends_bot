@@ -1,7 +1,7 @@
 # antoinefromafar_bot
 an inline Telegram bot to use the "WillFromAfar" voice from acapela
 
-utilisation: `./antoinefromafar_bot.rb [telegram API token] [cookies file]`
+usage: `./antoinefromafar_bot.rb [telegram API token] [cookies file]`
 
 ## Creating and updating cookies
 
