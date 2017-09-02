@@ -15,14 +15,14 @@ abort "usage: #{$PROGRAM_NAME} telegram_token cookie_file" unless ARGV.length ==
 # Loop to prevent the program from crashing if the Telegram API isn't responsive
 begin
   # Initializing bot
-  Telegram::Bot::Client.run(ARGV[0]) do |antoine_bot|
+  Telegram::Bot::Client.run(ARGV[0]) do |yell_bot|
     # Processing every message recieved
-    antoine_bot.listen do |message|
+    yell_bot.listen do |message|
       case message
 
       # If a message is recieved, answer to notify the user that the bot is only used in inline mode
       when Telegram::Bot::Types::Message
-        antoine_bot.api.send_message(chat_id: message.chat.id,
+        yell_bot.api.send_message(chat_id: message.chat.id,
                                      text: "This bot is exclusively used in \"inline\" mode, mention it in a conversation to use it.")
 
       # Process every recieved inline query
@@ -71,7 +71,7 @@ begin
         end
 
         # Sending the inline query response
-        antoine_bot.api.answer_inline_query(inline_query_id: message.id,
+        yell_bot.api.answer_inline_query(inline_query_id: message.id,
                                             results: result)
       end
     end
