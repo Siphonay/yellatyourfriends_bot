@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # coding: utf-8
-# yellonyourfriends_bot: an inline Telegram bot to use the "WillFromAfar" voice from acapela
+# yellatyourfriends_bot: an inline Telegram bot to use the "WillFromAfar" voice from acapela
 # Written in Ruby by Siphonay
 # No license applied
 
